@@ -1,0 +1,176 @@
+/* General styling ********************************************************************************/
+.loading-spinner {
+  height: 24vw;
+  max-height: 128px;
+  max-width: 128px;
+  position: absolute;
+  width: 24vw;
+}
+
+/* This 'disable-init-animations' class solves an issue with the menu animation firing on initial
+page load. See here for more details... https://css-tricks.com/transitions-only-after-page-load */
+.disable-init-animations * {
+  transition: none !important;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 2.8vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* PostCSS Variables */
+$dark-blue: rgb(25, 133, 148);
+$light-blue: rgb(172, 226, 234);
+$pale-blue: rgb(232, 244, 248);
+$pale-blue-transparent: rgba(232, 244, 248, 0.875);
+$pink: rgb(255, 227, 227);
+$grey: rgba(127, 127, 127, 0.6);
+$neon-green: rgb(216, 234, 203);
+$white-transparent: rgba(255, 255, 255, 0);
+$pastel-blue: rgb(164, 182, 221);
+$pastel-brown: rgb(208, 146, 146);
+$pastel-purple: rgb(192, 148, 204);
+$pastel-green: rgb(162, 208, 192);
+$pastel-wine: rgb(195, 120, 146);
+$medium-phone: 23.43em;
+$large-phone: 25.87em;
+$small-tablet: 38.75em;
+$medium-tablet: 57.5em;
+$large-tablet: 64em;
+$desktop: 85.375em;
+
+body {
+  color: $dark-blue;
+  overflow: hidden;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.border {
+  border: 0.8vh solid $light-blue;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.map-textbox-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+
+  @media screen and (min-width: $desktop) {
+    align-items: center;
+  }
+}
+
+.map {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.map-fade-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 36%;
+  position: relative;
+  width: 100%;
+}
+
+/* Hides Google logo, copyright, and terms of service.
+(This is very naughty, I know!) */
+.gm-style div a div img,
+.gm-style-cc {
+  display: none;
+}
+
+.init-screen-fade-in {
+  align-items: center;
+  animation: initScreenFadeIn 1.5s forwards;
+  background: white;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  visibility: visible;
+  width: 100%;
+}
+
+.init-map-container-loading-screen {
+  align-items: center;
+  background: white;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  visibility: visible;
+  width: 100%;
+
+  &--fade {
+    animation: initMapAreaFade 2.3s forwards;
+  }
+}
+
+@keyframes initScreenFadeIn {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  40% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes initMapAreaFade {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

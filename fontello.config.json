@@ -1,0 +1,28 @@
+{
+  "name": "",
+  "css_prefix_text": "menu",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "fd8d9ae4422e55d3ca23f55d9cf4b20a",
+      "css": "__icon-waves",
+      "code": 59392,
+      "src": "typicons"
+    },
+    {
+      "uid": "745f12abe1472d14f8f658de7e5aba66",
+      "css": "__icon-arrow--left",
+      "code": 61696,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "fdfbd1fcbd4cb229716a810801a5f207",
+      "css": "__icon-arrow--right",
+      "code": 61697,
+      "src": "fontawesome"
+    }
+  ]
+}

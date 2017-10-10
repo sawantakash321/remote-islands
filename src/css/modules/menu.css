@@ -1,0 +1,278 @@
+/**********
+
+This stylesheet is written in BEM.
+
+Block = .block
+Element = .block__element
+Modifier = block__element--modifier / .block--modifier
+
+**********/
+
+/* Menu Styling ***********************************************************************************/
+@define-mixin borderColorAnimations {
+  &--darken-border {
+    animation: darkenBorder 0.7s forwards;
+  }
+
+  &--lighten-border {
+    animation: lightenBorder 0.7s forwards;
+  }
+}
+
+.menu-container {
+  display: flex;
+  padding: 0.8vh;
+  pointer-events: none;
+  transform: translate3d(-82%, 0, 0);
+  transition: transform 0.7s ease-in-out;
+  width: 100%;
+
+  @media screen and (min-width: $small-tablet) {
+    width: 620px;
+  }
+
+  @media screen and (min-width: $large-tablet) {
+    width: 850px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 620px;
+  }
+}
+
+.menu {
+  border: 0.218em solid $light-blue;
+  border-bottom-width: 0.109em;
+  width: 82%;
+
+  @mixin borderColorAnimations;
+
+  &--visible {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &__icon-arrow {
+    align-items: center;
+    border: 0.2906666666666667em solid $light-blue;
+    border-left: none;
+    border-radius: 0 0.3em 0.3em 0;
+    cursor: pointer;
+    display: flex;
+    height: calc(10.9vh + 0.327em);
+    justify-content: center;
+    margin-top: calc(8vh + 0.218em);
+    pointer-events: auto;
+    transition: background 0.2s;
+    width: 18%;
+
+    &--left,
+    &--right {
+      bottom: 0.04em;
+      font-size: 3.2rem;
+      position: relative;
+    }
+
+    &--left {
+      right: 0.05em;
+
+      &::before {
+        content: '\f100';
+      }
+    }
+
+    &--right {
+      left: 0.05em;
+
+      &::before {
+        content: '\f101';
+      }
+    }
+
+    &--darken-and-decrease-width-of-border {
+      animation: darkenAndDecreaseWidthOfBorder 0.7s forwards;
+    }
+
+    &--lighten-and-increase-width-of-border {
+      animation: lightenAndIncreaseWidthOfBorder 0.7s forwards;
+    }
+  }
+
+  &__filter-list {
+    align-items: center;
+    background: white;
+    display: flex;
+    height: 8vh;
+    justify-content: space-around;
+    list-style: none;
+    pointer-events: auto;
+  }
+
+  &__filter-item {
+    cursor: pointer;
+    flex-grow: 1;
+    pointer-events: auto;
+    text-align: center;
+    transition: all 0.15s linear;
+
+    &__icon-waves::before {
+      content: '\e800';
+      font-size: 2.1em;
+    }
+
+    &:nth-child(1) {
+      color: $pastel-brown;
+    }
+
+    &:nth-child(2) {
+      color: $pastel-blue;
+    }
+
+    &:nth-child(3) {
+      color: $pastel-purple;
+    }
+
+    &:nth-child(4) {
+      color: $pastel-green;
+    }
+
+    &:nth-child(5) {
+      color: $pastel-wine;
+    }
+
+    &--selected {
+      bottom: 0.04em;
+      font-size: 1.2rem;
+      position: relative;
+      text-shadow: 0.2em 0.15em 0.2em $grey;
+    }
+  }
+
+  &__current-filter {
+    align-items: center;
+    border-top: 0.19075em solid $light-blue;
+    display: flex;
+    font-family: "Sirenne Roman OSF";
+    font-size: 3.4vh;
+    height: 5.5vh;
+    justify-content: center;
+    padding-top: 0.15em;
+    pointer-events: auto;
+    transition: background 0.05s;
+
+    @mixin borderColorAnimations;
+  }
+
+  &__island-list {
+    background: white;
+    border-top: 0.218em solid $light-blue;
+    list-style: none;
+    max-height: calc(84.9vh - 0.218em);
+    pointer-events: auto;
+
+    @mixin borderColorAnimations;
+  }
+
+  &__island {
+    align-items: center;
+    border-bottom: 0.08175em solid;
+    display: flex;
+    font-family: "Sirenne Roman OSF";
+    font-size: 3.7vh;
+    height: calc(5.535vh - 0.02725em);
+    justify-content: center;
+    padding-top: 0.15em;
+    pointer-events: auto;
+    transition: background 0.1s;
+
+    @mixin borderColorAnimations;
+
+    &--light-border {
+      border-color: $light-blue;
+    }
+
+    &:hover {
+      background: $pink;
+      cursor: pointer;
+    }
+  }
+
+  &__home-screen-link-container {
+    align-items: center;
+    background: white;
+    border-style: solid;
+    border-width: 0.095375em 0;
+    display: flex;
+    flex: 1 0 auto;
+    height: calc(7.4vh - 0.02725em);
+    justify-content: center;
+    pointer-events: auto;
+    transition: background 0.7s linear;
+
+    &--inactive {
+      cursor: auto;
+
+      @mixin borderColorAnimations;
+    }
+
+    &--active {
+      cursor: pointer;
+      transition: background 0.1s;
+
+      @mixin borderColorAnimations;
+
+      &:hover {
+        background: $neon-green;
+      }
+    }
+  }
+
+  &__home-screen-image {
+    height: 2.1em;
+    pointer-events: none;
+    position: absolute;
+  }
+}
+
+@keyframes darkenBorder {
+  from {
+    border-color: $light-blue;
+  }
+
+  to {
+    border-color: $dark-blue;
+  }
+}
+
+@keyframes lightenBorder {
+  from {
+    border-color: $dark-blue;
+  }
+
+  to {
+    border-color: $light-blue;
+  }
+}
+
+@keyframes darkenAndDecreaseWidthOfBorder {
+  from {
+    border-color: $light-blue;
+    border-width: 0.2906666666666667em;
+  }
+
+  to {
+    border-color: $dark-blue;
+    border-width: 0.218em;
+  }
+}
+
+@keyframes lightenAndIncreaseWidthOfBorder {
+  from {
+    border-color: $dark-blue;
+    border-width: 0.218em;
+  }
+
+  to {
+    border-color: $light-blue;
+    border-width: 0.2906666666666667em;
+  }
+}

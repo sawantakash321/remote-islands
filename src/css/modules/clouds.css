@@ -1,0 +1,224 @@
+/**********
+
+This stylesheet is written in BEM.
+
+Block = .block
+Element = .block__element
+Modifier = block__element--modifier / .block--modifier
+
+**********/
+
+/* Clouds Styling ****************************************************************************/
+.clouds {
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+
+  &__cloud-1 {
+    left: 40vw;
+    opacity: 0.8;
+    top: -15vh;
+    transform: translate3d(0, 0, 0);
+
+    &--animate {
+      animation: cloud1Animation 19s forwards;
+    }
+  }
+
+  &__cloud-2 {
+    left: 60vw;
+    opacity: 0.7;
+    top: 7vh;
+    transform: translate3d(0, 0, 0);
+
+    &--animate {
+      animation: cloud2Animation 20s forwards;
+    }
+  }
+
+  &__cloud-3 {
+    left: 40vw;
+    opacity: 0.6;
+    top: 47vh;
+    transform: translate3d(0, 0, 0);
+
+    &--animate {
+      animation: cloud3Animation 13s forwards;
+    }
+  }
+
+  &__cloud-4 {
+    left: 35vw;
+    opacity: 1;
+    top: 45vh;
+    transform: translate3d(0%, 0, 0);
+
+    &--animate {
+      animation: cloud4Animation 18s forwards;
+    }
+  }
+
+  &__cloud-5 {
+    opacity: 0.7;
+    top: 2vh;
+    transform: translate3d(0%, 0, 0);
+
+    &--animate {
+      animation: cloud5Animation 15s forwards;
+    }
+  }
+
+  &__cloud-6 {
+    left: -5vw;
+    opacity: 0.9;
+    top: -7vh;
+    transform: translate3d(0%, 0, 0);
+
+    &--animate {
+      animation: cloud6Animation 22s forwards;
+    }
+  }
+
+  &__cloud-7 {
+    left: -20;
+    opacity: 0.5;
+    top: 45vh;
+    transform: translate3d(0%, 0, 0);
+
+    &--animate {
+      animation: cloud7Animation 20s forwards;
+    }
+  }
+
+  &__cloud-8 {
+    left: 5vw;
+    opacity: 0.6;
+    top: 25vh;
+    transform: translate3d(0%, 0, 0);
+
+    &--animate {
+      animation: cloud8Animation 22s forwards;
+    }
+  }
+}
+
+@keyframes cloud1Animation {
+  from {
+    transform: translate3d(0%, 0, 0);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(55vw, 0, 0);
+  }
+}
+
+@keyframes cloud2Animation {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(55vw, 0, 0);
+  }
+}
+
+@keyframes cloud3Animation {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(55vw, 0, 0);
+  }
+}
+
+@keyframes cloud4Animation {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(55vw, 0, 0);
+  }
+}
+
+@keyframes cloud5Animation {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-65vw, 0, 0);
+  }
+}
+
+@keyframes cloud6Animation {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  70% {
+    opacity: 0.9;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-65vw, 0, 0);
+  }
+}
+
+@keyframes cloud7Animation {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-60vw, 0, 0);
+  }
+}
+
+@keyframes cloud8Animation {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  70% {
+    opacity: 0.6;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-65vw, 0, 0);
+  }
+}

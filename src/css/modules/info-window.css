@@ -1,0 +1,53 @@
+/**********
+
+This stylesheet is written in BEM.
+
+Block = .block
+Element = .block__element
+Modifier = block__element--modifier / .block--modifier
+
+**********/
+
+/* Info Window Styling ****************************************************************************/
+.infowindow {
+  &__loading-spinner {
+    height: 2.5em;
+    margin-left: 2em;
+    margin-top: 0.3em;
+  }
+
+  &__text {
+    font-family: "Sirenne Roman OSF";
+    font-size: 0.9rem;
+    line-height: 1.35em;
+    max-width: 58vw;
+    padding-top: 0.2em;
+    text-align: center;
+
+    @media screen and (min-width: $medium-phone) {
+      font-size: 0.83rem;
+    }
+
+    @media screen and (min-width: $large-phone) {
+      font-size: 0.76rem;
+    }
+
+    @media screen and (min-width: $medium-tablet) {
+      max-width: 100%;
+    }
+
+    &__world-tides-link {
+      color: $dark-blue;
+    }
+
+    &--error {
+      margin-bottom: -0.02em;
+      margin-top: 0.2em;
+    }
+  }
+}
+
+/* Hides the close button in the info window while the loading spinner is showing. */
+.gm-style-iw + div {
+  display: none;
+}

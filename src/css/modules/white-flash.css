@@ -1,0 +1,48 @@
+/**********
+
+This stylesheet is written in BEM.
+
+Block = .block
+Element = .block__element
+Modifier = block__element--modifier / .block--modifier
+
+**********/
+
+/* White Flash Styling ****************************************************************************/
+.white-flash-div--standby {
+  background: white;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+}
+
+.white-flash-div--flash {
+  animation: whiteCloudFlashWhenIslandSelected 0.7s forwards;
+}
+
+@keyframes whiteCloudFlashWhenIslandSelected {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  40% {
+    opacity: 0.95;
+    visibility: visible;
+  }
+
+  60% {
+    opacity: 0.95;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

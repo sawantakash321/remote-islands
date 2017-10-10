@@ -1,0 +1,77 @@
+{
+  "name": "remote-islands",
+  "author": "Akash Sawant",
+  "version": "1.0.0",
+  "description": "A single-page application using Knockout.js, Javascript design patterns, the Google Maps API, and working with other third-party APIs via AJAX.",
+  "keywords": [],
+  "main": "index.js",
+  "homepage": "",
+  "repository": "https://github.com/sawantakash321/remote-islands.git",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "broswerslist": [
+    "> 1%",
+    "ie > 9"
+  ],
+  "pre-commit": [
+    "pre-commit"
+  ],
+  "scripts": {
+    "build": "rimraf build && cross-env NODE_ENV=production webpack -p",
+    "deploy-firebase": "yarn build && firebase deploy",
+    "deploy-github": "git subtree push --prefix build origin gh-pages",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "firebase-init": "firebase login && firebase init",
+    "eslint": "eslint src/js/**/*.js",
+    "pre-commit": "yarn stylelint && yarn eslint",
+    "stylelint": "stylelint src/css/**/*.css"
+  },
+  "dependencies": {
+    "google-maps-api": "^2.0.1",
+    "howler": "^2.0.4",
+    "knockout": "^3.4.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "chalk": "^2.1.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.4",
+    "cssnano": "^3.10.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.1.0",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "firebase-tools": "^3.9.2",
+    "fontello-webpack-plugin": "^0.4.5",
+    "html-webpack-plugin": "^2.30.1",
+    "image-webpack-loader": "^3.3.1",
+    "postcss-flexbugs-fixes": "^3.2.0",
+    "postcss-import": "^10.0.0",
+    "postcss-loader": "^2.0.6",
+    "postcss-mixins": "^6.0.1",
+    "postcss-nested": "^2.1.2",
+    "postcss-simple-vars": "^4.0.0",
+    "postcss-url": "^7.1.2",
+    "pre-commit": "^1.2.2",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.18.2",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-order": "^0.6.0",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.5.4",
+    "webpack-dev-server": "^2.7.1"
+  }
+}

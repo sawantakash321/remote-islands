@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Atlas Of Remote Islands</title>
+  <link href="//cloud.webtype.com/css/4f936d5f-c588-46e1-abfe-1034d1d12d9b.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo="> <!-- Prevents unnecessary 'favicon.ico' requests  -->
+</head>
+<body class="disable-init-animations">
+  <div class="map-textbox-container">
+    <div class="map-fade-container">
+      <section class="map"></section>
+      <div data-bind="attr: {class: whiteCloudFlashWhenIslandSelected()
+      ? 'white-flash-div--standby white-flash-div--flash'
+      : 'white-flash-div--standby'}">
+      </div>
+      <!-- The clouds are only downloaded when the user is viewing the site on a desktop, in order
+      to improve page load speed on mobile. We use Webpack's code splitting feature to do this. -->
+      <div class="cloud-container" data-bind="foreach: cloudImgSrcPaths,
+      visible: viewedOnDesktop() && initialHomeScreenLoad() && !currentlySelectedIsland()">
+        <img data-bind="attr: {src: $data, class: 'clouds clouds__cloud-' + ($parent.cloudImgSrcPaths.indexOf($data) + 1)}">
+      </div>
+      <div class='init-map-container-loading-screen'></div>
+    </div>
+    <div class="border"></div>
+    <div class="textbox-underlayer"></div>
+    <section class="textbox">
+      <!-- Even though the init text in the textbox is dynamically generated via Knockout, we're
+      still going to place the same text between the tags as well, just to give the user something
+      to read and avoid FOUT if they have a bad connection and the map/bindings are taking a while
+      to load. As soon as the map is loaded and bindings are successfully applied then the
+      placeholder text will be seamlessly replaced with the same text via Knockout. -->
+      <h2 class="textbox__header" data-bind="html: currentlySelectedIsland()
+      ? currentlySelectedIsland().name
+      : 'ATLAS <span class=\'textbox__span-in-init-header\'>OF</span> REMOTE ISLANDS'">
+      ATLAS OF REMOTE ISLANDS
+      </h2>
+      <div class="textbox__text" data-bind="html: currentlySelectedIsland()
+      ? currentlySelectedIsland().bookExcerpt
+      : '<p class=\'textbox__text--init\'>Think modern life is rubbish? Want to ' +
+      'get away from everyone and everything? Just pick an island name from the menu to start ' +
+      'planning your escape! Author Judith Schalansky will be your guide to the most remote ' +
+      'islands on planet Earth. Click <a target=\'_blank\' href=' +
+      '\'https://www.bookdepository.com/Atlas-Remote-Islands-Judith-Schalansky/9780143118206\' ' +
+      'style=\'text-decoration: underline; color: rgb(25, 133, 148);\'>here</a> to purchase her ' +
+      'wonderful, award-winning book - the inspiration for this web app.</p>'">Think modern life is rubbish? Want to get away from everyone and everything? Just pick an island name from the menu to start planning your escape! Author Judith Schalansky will be your guide to the most remote islands on planet Earth. Click here to purchase her wonderful, award-winning book - the inspiration for this web app.
+      </div>
+    </section>
+  </div>
+  <div class="black-fade-div-container" data-bind="click: toggleMenuVisibility,
+  style: {'pointer-events': menuVisible() ? 'auto' : 'none'}">
+    <div data-bind="attr: {class: menuVisible()
+    ? 'black-fade-div--standby black-fade-div--fade-out'
+    : 'black-fade-div--standby black-fade-div--fade-in'}">
+    </div>
+  </div>
+  <div class="menu-container"
+  data-bind="css: {'menu--visible': menuVisible()}">
+    <section data-bind="attr: {class: menuVisible()
+    ? 'menu menu--darken-border'
+    : 'menu menu--lighten-border'},
+    style: {borderRadius: currentlySelectedOcean() !== null
+    ? '0 .3em .3em .3em'
+    : '0 .3em .3em 0'}">
+      <ul class="menu__filter-list" data-bind="foreach: uniqueOceans">
+        <li class="menu__filter-item"
+        data-bind="click: $parent.selectOcean,
+        css: {'menu__filter-item--selected': $data == $root.currentlySelectedOcean()},
+        attr: {title: $data}">
+          <i class="menu__filter-item__icon-waves"></i>
+        </li>
+      </ul>
+      <p data-bind="style: {background: filterChanged()
+      ? 'rgb(253, 234, 195)'
+      : 'rgb(255, 255, 255)'},
+      attr: {class: menuVisible()
+      ? 'menu__current-filter menu__current-filter--darken-border'
+      : 'menu__current-filter menu__current-filter--lighten-border'}">
+        <span class="filter">Filter:&nbsp;</span><span data-bind="text: currentlySelectedOcean() || 'None'"></span>
+      </p>
+      <ul data-bind="foreach: islandsToList,
+      attr: {class: menuVisible()
+      ? 'menu__island-list menu__island-list--darken-border'
+      : 'menu__island-list menu__island-list--lighten-border'}">
+        <li data-bind="html: name,
+        click: $parent.islandSelectedFromMenu,
+        event: {mouseenter: $parent.islandNameHover},
+        attr: {class: $parent.menuVisible() && $parent.menuHasBeenToggled()
+        ? 'menu__island menu__island--darken-border'
+        : !$parent.menuVisible() && $parent.menuHasBeenToggled()
+        ? 'menu__island menu__island--lighten-border'
+        : $parent.menuVisible() === true
+        ? 'menu__island'
+        : 'menu__island menu__island--light-border'}">
+        </li>
+      </ul>
+      <a data-bind="click: backToHomeScreen,
+      event: {mouseenter: trackHomeLinkEventType, mouseleave: trackHomeLinkEventType},
+      attr: {class: menuVisible() && activateHomeScreenLinkWhenNotInGlobalView()
+      ? 'menu__home-screen-link-container menu__home-screen-link-container--active menu__home-screen-link-container--active--darken-border'
+      : !menuVisible() && activateHomeScreenLinkWhenNotInGlobalView()
+      ? 'menu__home-screen-link-container menu__home-screen-link-container--active menu__home-screen-link-container--active--lighten-border'
+      : menuVisible() && !activateHomeScreenLinkWhenNotInGlobalView()
+      ? 'menu__home-screen-link-container menu__home-screen-link-container--inactive menu__home-screen-link-container--inactive--darken-border'
+      : 'menu__home-screen-link-container menu__home-screen-link-container--inactive menu__home-screen-link-container--inactive--lighten-border'}">
+        <img data-bind="attr: {src: getHomeScreenLink(),
+        class: homeLinkEventType() === 'mouseenter' && activateHomeScreenLinkWhenNotInGlobalView()
+        ? 'menu__home-screen-image menu__home-screen-image--hover'
+        : 'menu__home-screen-image'}" />
+      </a>
+    </section>
+    <section data-bind="click: toggleMenuVisibility, attr: {class: menuVisible()
+    ? 'menu__icon-arrow menu__icon-arrow--darken-and-decrease-width-of-border'
+    : 'menu__icon-arrow menu__icon-arrow--lighten-and-increase-width-of-border'},
+    event: {mouseenter: trackArrowButtonEventType, mouseleave: trackArrowButtonEventType},
+    style: {background: flash() || !menuVisible() && arrowButtonEventType() === 'mouseenter'
+    ? 'rgb(255, 219, 241)'
+    : menuVisible() && arrowButtonEventType() === 'mouseenter'
+    ? 'rgb(216, 234, 203)'
+    : menuVisible() && arrowButtonEventType() === 'mouseleave'
+    ? 'rgb(255, 255, 255)'
+    : !menuVisible() && arrowButtonEventType() === 'mouseleave' && viewedOnDesktop() ||
+    !menuVisible() && viewedOnDesktop()
+    ? 'rgba(232, 244, 248, 0.875)'
+    : 'rgb(232, 244, 248)'}">
+      <i data-bind="attr: {class: menuVisible()
+      ? 'menu__icon-arrow--left'
+      : 'menu__icon-arrow--right'}"></i>
+    </section>
+  </div>
+  <div class='init-screen-fade-in'></div>
+</body>
+</html>
